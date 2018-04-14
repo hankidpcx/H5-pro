@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<style>
+  .div1{
+    height: 100px;
+    background: #6DC5DC;
+  }
+  .rowLabel{
+    background: yellow;
+    display: block;
+  }
+  [data-myself] {
+    background: red;
+  }
+</style>
+<body>
+  <!--
+  块级标签： 占据一整行， 高度，行高，内边距和外边距都可以改变
+      宽度和浏览器的宽度一样，和内容无关
+      可以容纳块级标签和其他行内标签
+  行内标签： 只占内容宽度大小， 高度，行高，内边距和外边是部分可以改变
+  -->
+    <span class="rowLabel">hellow world</span>
+
+    <div class="div1"></div>
+
+      <!--闭合标签-->
+      <div onclick="fillFont(this)" data-myself="div element">this is a </div>
+      <article>this is a article 1</article>
+      <article>this is a article 2</article>
+
+
+      <!--自闭合标签,在HTML5标准中并非要求一定/闭合，xhtml中要求-->
+      <img src="./" alt="">
+      <!--block element：默认独占一行的-->
+      <address style="display:inline">地址详情</address>
+      <h1 style="display:inline">大标题是什么</h1>
+
+      <!--inline element-->
+      <a style="display:block">link</a>
+      <dfn style="display:block">font size</dfn>
+      <big style="display:block">large font</big>
+      <script type="text/javascript">
+      function fillFont(obj) {
+       var name = obj.getAttribute("data-myself");
+       alert(obj.innerHTML + '' + name);
+      }
+      </script>
+</body>
+</html>

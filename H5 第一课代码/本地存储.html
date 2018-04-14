@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>本地存储</title>
+</head>
+<body>
+    <!-- 说明：
+        1,sessionStorage（临时存储） ：为每一个数据源维持一个存储区域，在浏览器打开期间存在，包括页面重新加载
+        2,localStorage（长期存储） ：与 sessionStorage 一样，但是浏览器关闭后，数据依然会一直存在
+     -->
+     <script>
+
+        // 1,保存数据到本地
+        const info = {
+            name: 'Lee',
+            age: 20,
+            id: '001'
+        };
+        sessionStorage.setItem('key', JSON.stringify(info));
+        localStorage.setItem('key', JSON.stringify(info));
+        
+        // 2,从本地存储获取数据
+        var data1 = JSON.parse(sessionStorage.getItem('key'));
+        var data2 = JSON.parse(localStorage.getItem('key'));
+
+        // 3， 本地存储中删除某个保存的数据
+        sessionStorage.removeItem('key');
+        localStorage.removeItem('key');
+
+        // 4， 删除所有保存的数据
+        sessionStorage.clear();
+        localStorage.clear();
+
+        // 浏览器查看方法
+        //     进入开发者工具
+        //     选择 Application
+        //     在左侧 Storage 下 查看 Local Storage 和 Session Storage
+
+     </script>
+</body>
+</html>

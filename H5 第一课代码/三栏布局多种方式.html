@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>三栏布局多种实现方式</title>
+    <style>
+        *{ margin: 0; padding: 0;}
+
+        /*  第一部分 -- 双飞翼布局  */
+        header,article,footer{ display: block; overflow: hidden;}
+        /*以上为重置样式，在实际项目中可用Normalize.css，或者reset.css等*/
+        header,footer{ background: #444; height: 60px; color: #fff; line-height: 60px; text-align:center;}
+        .left,.right,.content{ float: left; min-height: 200px;}
+        .left,.right{ width: 200px;}
+        .left{ background: darkgreen; margin-left: -100%;}
+        .right{ background: cornflowerblue; margin-left: -200px;}
+        .content{width: 100%; background: darkgoldenrod; padding: 0 200px; box-sizing: border-box;}
+        /* 以上是双飞翼布局，稍微有点更改的是，content使用box-sizing,去节省了一个标签。需要注意content中间的放在最前面 */
+
+        /*  第二部分 -- 圣杯布局  */
+        .content1,.left1,.right1{ position: relative; float: left; min-height: 200px;}
+        .article{padding: 0 200px; }
+        .left1,.right1{ width: 200px;}
+        .left1{ background: darkgreen; margin-left: -100%; left: -200px;}
+        .right1{ background: cornflowerblue; margin-left: -200px; right: -200px;}
+        .content1{width: 100%; background: darkgoldenrod; }
+        /* 以上是圣杯布局  需要注意content中间的放在最前面*/
+
+        /*  第三部分 定位方法实现 */
+        .article3{ position: relative; overflow: hidden; padding: 0 200px;}
+        .content3,.left3,.right3{min-height: 200px;}
+        .left3,.right3{ width: 200px;}
+        .left3{ background: darkgreen; position: absolute; left: 0; top: 0;}
+        .right3{ background: cornflowerblue; position:absolute; top: 0; right: 0;}
+        .content3{width: 100%; background: darkgoldenrod; }
+        /* 以上还是可以改变的，content3同样可以定位，那么就是{position:absolute;left:200px; right:200px;top:0;} 最为常用该布局方式*/
+
+        /*flex布局，这个代码最为简单，但是有兼容性问题，如果不考虑ie11以下，可以放心用*/
+        .article4{ display: flex;}
+        .content4,.left4,.right4{min-height: 200px;}
+        .left4,.right4{ width: 200px;}
+        .left4{ background: darkgreen; }
+        .right4{ background: cornflowerblue;}
+        .content4{ background: darkgoldenrod; flex-grow: 1; }
+        /* 为什么这么少的代码就可以，因为有很多默认正好是我们所需要的，需要了解的可以去 http://www.ruanyifeng.com/blog/2015/07/flex-grammar.html  
+        这是趋势，一定得掌握，当掌握后你就知道布局是多么简单的事，不在为浮动、定位。不受控制的div而烦恼了。 另外还有 grid布局，暂时浏览器兼容不好，但是几年后那就不一定了。*/
+    </style>
+</head>
+<body>
+
+    <!-- 第一部分开始 -->
+    <header>
+       <h1>header1</h1>       
+    </header>
+    <article>
+        <div class="content">content1</div>
+        <div class="left">left1</div>
+        <div class="right">right1</div>
+    </article>
+    <footer>footer1</footer> 
+  <!-- 第一部分结束 -->
+
+  <div style="margin-top:50px;"></div>
+
+ <!-- 第二部分开始 -->
+  <header>
+        <h1>header2</h1>       
+     </header>
+   <article class="article">
+       <div class="content1">content2</div>
+       <div class="left1">left2</div>
+       <div class="right1">right2</div>
+   </article>
+   <footer>footer2</footer>
+   <!-- 第二部分结束 -->
+
+   <div style="margin-top:50px;"></div>
+
+    <!-- 第三部分开始 -->
+    <header>
+        <h1>header3</h1>       
+     </header>
+   <article class="article3">
+       <div class="left3">left3</div>
+       <div class="content3">content3</div>
+       <div class="right3">right3</div>
+   </article>
+   <footer>footer3</footer>
+   <!-- 第三部分结束 -->
+
+   <div style="margin-top:50px;"></div>
+
+   <!-- 第四部分开始 -->
+   <header>
+        <h1>header4</h1>       
+     </header>
+   <article class="article4">
+       <div class="left4">left4</div>
+       <div class="content4">content4</div>
+       <div class="right4">right4</div>
+   </article>
+   <footer>footer4</footer>
+   <!-- 第四部分结束 -->
+
+</body>
+</html>
+
+
+<!-- 
+    1，以上虽然是一个简单的布局，但是可以联想到很多知识点，比如现在项目应用中，
+    正好header + 中间内容 + footer 是一当前浏览器可视窗口的高，怎么实现多栏等高。
+    2，box-sizing: border-box;启到什么作用，有什么兼容性吗？
+    3，为什么子集浮动了，父级article，使用了overflow，有没有弊端，需要怎么去改进？ BFC是什么？
+    4，Normalize.css，或者reset.css里面写了哪些东西，分别启到什么作用？
+    5，<meta http-equiv="X-UA-Compatible" content="ie=edge">这个又是什么？启到什么作用？
+-->
